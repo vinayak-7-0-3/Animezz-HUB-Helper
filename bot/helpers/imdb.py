@@ -28,9 +28,8 @@ async def get_info(query):
         story_line = data2.get("story_line")
         director = data2.get("directors")
         release_date = data2.get("release")
-        if " (" in release_date:
-            release_date = release_date.split(" (")[0]
         rating = data2.get("rating")
+        print(title, director, release_date, rating)
 
         msg = f"<b>Title :</b> <code>{title}</code>\n\n"
         msg += f"<b>IMDB Rating :</b> <code>{rating}</code>\n\n"
