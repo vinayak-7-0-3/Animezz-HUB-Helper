@@ -11,8 +11,8 @@ async def addButtons(bot, update):
     msg = update.reply_to_message
     if msg and links:
         inline_keyboard = []
-        inline_keyboard.append([InlineKeyboardButton(text="Direct Download",callback_data=links[1])])
-        inline_keyboard.append([InlineKeyboardButton(text="TG File",callback_data=links[2])])
+        inline_keyboard.append([InlineKeyboardButton(text="Direct Download",url=links[1])])
+        inline_keyboard.append([InlineKeyboardButton(text="TG File",url=links[2])])
         await bot.copy_message(
             chat_id=update.chat.id,
             from_chat_id=msg.chat.id,
