@@ -38,7 +38,7 @@ async def inline_search(_, event: InlineQuery):
             query = query[6:]
             msg, title, photo = await get_info(query)
             for name in title:
-                if not photo[title.index(name)] == "None":
+                if photo[title.index(name)]:
                     print(name)
                     print(photo[title.index(name)])
                     print("\n")
