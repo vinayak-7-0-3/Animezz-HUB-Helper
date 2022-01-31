@@ -21,6 +21,7 @@ async def get_info(query):
             link = "None"
         try:
             photo = item.get("thumbnail")
+            print(photo)
         except:
             photo = "None"
             

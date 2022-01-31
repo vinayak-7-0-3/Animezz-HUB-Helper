@@ -44,7 +44,7 @@ async def inline_search(_, event: InlineQuery):
                             photo_url=photo[title.index(name)],
                             title=name,
                             caption=msg[title.index(name)],
-                            description=msg[title.index(name)]
+                            #description=msg[title.index(name)]
                         )
                     )
         elif query.startswith("-s "):
