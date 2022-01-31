@@ -14,21 +14,21 @@ async def get_info(query):
         try:
             title = item.get("title")
         except:
-            title = None
+            title = "None"
         try:
             link = item.get("imdb_link")
         except:
-            link = None
+            link = "None"
         try:
             photo = item.get("thumbnail")
         except:
-            photo = None
+            photo = "None"
             
         data2 = requests.get(imdb_link + link).json()
-        story_line = data2.get("story_line")
-        director = data2.get("directors")
-        release_date = data2.get("release")
-        rating = data2.get("rating")
+        story_line = str(data2.get("story_line"))
+        director = str(data2.get("directors"))
+        release_date = str(data2.get("release"))
+        rating = str(data2.get("rating"))
         print(title, director, release_date, rating)
 
         msg = f"<b>Title :</b> <code>{title}</code>\n\n"

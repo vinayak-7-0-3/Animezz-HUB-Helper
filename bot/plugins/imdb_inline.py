@@ -37,7 +37,7 @@ async def inline_search(_, event: InlineQuery):
         elif query.startswith("-imdb "):
             query = query[6:]
             msg, title, photo = await get_info(query)
-            if photo:
+            if not photo == "None":
                 for name in title:
                     answers.append(
                         InlineQueryResultPhoto(
@@ -51,7 +51,7 @@ async def inline_search(_, event: InlineQuery):
             query = query[3:]
         else:
             msg = None
-            
+
     try:
         await event.answer(
             results=answers,

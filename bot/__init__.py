@@ -32,7 +32,7 @@ FOOTER = getenv("FOOTER")
 #DATABASE_URL = getenv("DATABASE_URL")
 #DATABASE_NAME = getenv("DATABASE_NAME")
 
-INLINE_THUMB = getenv("INLINE_THUMB", None)
+INLINE_THUMB = getenv("INLINE_THUMB", False)
 
 plugins = dict(
     root="bot/plugins"
