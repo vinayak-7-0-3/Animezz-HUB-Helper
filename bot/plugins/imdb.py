@@ -15,9 +15,7 @@ async def imdb(bot, update):
             inline_keyboard = []
             for id in id_list:
                 name = titles[id_list.index(id)]
-                inline_keyboard.append([
-                    inline_keyboard.append([InlineKeyboardButton(text=name,callback_data=id)])
-                ])
+                inline_keyboard.append([InlineKeyboardButton(text=name,callback_data=id)])
             await bot.send_message(
                     chat_id=update.chat.id,
                     text="Select the movie you want to request",
