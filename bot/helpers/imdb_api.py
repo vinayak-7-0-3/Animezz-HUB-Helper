@@ -51,6 +51,20 @@ async def get_info(query):
     file.write(response.content)
     file.close()"""
 
+async def reqLinkID(query):
+    id_list = []
+    titles = []
+    num = 0
+    data = requests.get(f"{imdb_query}{query}").json()
+    try:
+        for i in data.get("data"):
+            id_list.append(i.get("imdb_link").replace("https://www.imdb.com/title/", ""))
+            titles.append(i.get("title"))
+            num += 1
+    except:
+        return None
+    return titles, id_list
+
 
 
 

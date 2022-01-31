@@ -1,6 +1,6 @@
 from pyrogram import Client
 from bot import LOGGER, INLINE_THUMB
-from bot.helpers.imdb import get_info
+from bot.helpers.imdb_api import get_info
 from pyrogram.errors import QueryIdInvalid
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, InlineQuery, InlineQueryResultArticle, \
     InputTextMessageContent, InlineQueryResultPhoto
