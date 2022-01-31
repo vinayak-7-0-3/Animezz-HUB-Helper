@@ -3,7 +3,7 @@ from bot import LOGGER, INLINE_THUMB
 from bot.helpers.imdb import get_info
 from pyrogram.errors import QueryIdInvalid
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, InlineQuery, InlineQueryResultArticle, \
-    InputTextMessageContent, InlineQueryResultAudio, InlineQueryResultPhoto
+    InputTextMessageContent, InlineQueryResultPhoto
 
 @Client.on_inline_query()
 async def inline_search(_, event: InlineQuery):
@@ -37,8 +37,8 @@ async def inline_search(_, event: InlineQuery):
         elif query.startswith("-imdb "):
             query = query[6:]
             msg, title, photo = await get_info(query)
-            if not photo == "None":
-                for name in title:
+            for name in title:
+                if not photo == "None":
                     print(name)
                     print(photo[title.index(name)])
                     print("\n")
