@@ -2,7 +2,7 @@ from bot import BOT_USERNAME, ADMINS, CHANNEL_ID
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-@Client.on_message(filters.command(["buttons", f"buttons@{BOT_USERNAME}"]))
+@Client.on_message(filters.command(["post", f"post@{BOT_USERNAME}"]))
 async def post_in_channel(bot, update):
     if update.from_user.id in ADMINS:
         try:
@@ -23,5 +23,11 @@ async def post_in_channel(bot, update):
                 message_id=msg.message_id,
                 reply_markup=InlineKeyboardMarkup(inline_keyboard)
             )
+    else:
+        await bot.send_message(
+            chat_id=update.chat.id,
+            from_chat_id=msg.chat.id,
+            message_id=msg.message_id
+        ) 
 
 
