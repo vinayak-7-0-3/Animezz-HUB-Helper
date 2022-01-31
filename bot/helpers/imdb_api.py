@@ -61,8 +61,10 @@ async def reqLinkID(query):
             id_list.append(i.get("imdb_link").replace("https://www.imdb.com/title/", ""))
             titles.append(i.get("title"))
             num += 1
+            print(i.get("title"))
     except:
-        return None
+        id_list.append(None)
+        titles.append(None)
     return titles, id_list
 
 
