@@ -21,7 +21,7 @@ if BOT_USERNAME.startswith("@"):
 
 # Logging Group where RSS bot dumps
 #GROUP_ID = int(getenv("GROUP_ID"))
-#CHANNEL_ID = int(getenv("CHANNEL_ID"))
+CHANNEL_ID = int(getenv("CHANNEL_ID"))
 
 # Both URLS (not the username)
 SUPPORT_GROUP = getenv("SUPPORT_GROUP")
