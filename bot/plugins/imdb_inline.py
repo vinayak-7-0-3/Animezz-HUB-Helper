@@ -39,6 +39,9 @@ async def inline_search(_, event: InlineQuery):
             msg, title, photo = await get_info(query)
             if not photo == "None":
                 for name in title:
+                    print(name)
+                    print(photo[title.index(name)])
+                    print("\n")
                     answers.append(
                         InlineQueryResultPhoto(
                             photo_url=photo[title.index(name)],

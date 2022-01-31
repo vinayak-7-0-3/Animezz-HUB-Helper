@@ -21,7 +21,6 @@ async def get_info(query):
             link = "None"
         try:
             photo = item.get("thumbnail")
-            print(photo)
         except:
             photo = "None"
             
@@ -30,7 +29,6 @@ async def get_info(query):
         director = str(data2.get("directors"))
         release_date = str(data2.get("release"))
         rating = str(data2.get("rating"))
-        print(title, director, release_date, rating)
 
         msg = f"<b>Title :</b> <code>{title}</code>\n\n"
         msg += f"<b>IMDB Rating :</b> <code>{rating}</code>\n\n"
