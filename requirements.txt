@@ -2,3 +2,4 @@ pyrogram
 TgCrypto
 requests
 urllib3
+jikanpy

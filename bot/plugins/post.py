@@ -34,9 +34,8 @@ async def post_in_channel(bot, update):
 @Client.on_message(filters.incoming)
 async def backup_file(bot, update):
     if update.chat.id == STORAGE_CHANNEL and ALLOW_BACKUP:
-        msg = update.message
         await bot.copy_message(
             chat_id=BACKUP_CHANNEL,
-            from_chat_id=msg.chat.id,
-            message_id=msg.message_id
+            from_chat_id=update.chat.id,
+            message_id=update.message_id
         )
