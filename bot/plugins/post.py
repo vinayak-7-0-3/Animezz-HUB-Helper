@@ -1,4 +1,5 @@
-from bot import BOT_USERNAME, ADMINS, CHANNEL_ID
+from bot import BOT_USERNAME, ADMINS, CHANNEL_ID, \
+    ALLOW_BACKUP, BACKUP_CHANNEL, STORAGE_CHANNEL
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
@@ -30,4 +31,12 @@ async def post_in_channel(bot, update):
             message_id=msg.message_id
         ) 
 
-
+@Client.on_message(filters.incoming)
+async def backup_file(bot, update):
+    if update.chat.id == STORAGE_CHANNEL and ALLOW_BACKUP:
+        msg = update.message
+        await bot.copy_message(
+            chat_id=BACKUP_CHANNEL,
+            from_chat_id=msg.chat.id,
+            message_id=msg.message_id
+        )

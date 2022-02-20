@@ -21,6 +21,9 @@ if BOT_USERNAME.startswith("@"):
 
 CHANNEL_ID = int(getenv("CHANNEL_ID"))
 ADMINS = set(int(x) for x in getenv("ADMINS", "").split())
+BACKUP_CHANNEL = int(getenv("BACKUP_CHANNEL", -100))
+STORAGE_CHANNEL = int(getenv("STORAGE_CHANNEL", -100))
+ALLOW_BACKUP = bool(int(getenv("ALLOW_BACKUP", 0)))
 
 FOOTER = getenv("FOOTER")
 INLINE_THUMB = getenv("INLINE_THUMB", False)
