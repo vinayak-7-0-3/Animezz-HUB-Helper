@@ -8,7 +8,6 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQ
 async def search_anime_mal(bot, update):
     try:
         name = update.text.split(" ", maxsplit=1)[1]
-        print(name)
     except:
         name = None
     if name:
@@ -29,7 +28,6 @@ async def search_anime_mal(bot, update):
 async def get_anime_mal(bot, update):
     try:
         a_id = update.text.split(" ", maxsplit=1)[1]
-        print(id)
     except:
         a_id = None
     if a_id:
@@ -41,4 +39,3 @@ async def get_anime_mal(bot, update):
                 caption=msg,
                 reply_to_message_id=update.message_id
             )
-            
