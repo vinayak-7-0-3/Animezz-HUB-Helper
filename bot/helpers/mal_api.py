@@ -18,3 +18,20 @@ def get_anime_list(name):
             return titles, id_list
         else:
             return None, None
+
+def get_anime_by_id(id):
+    try:
+        anime = animelist.anime(id)
+    except:
+        return None
+    if anime:
+        img_url = anime["image_url"]
+        
+        msg = f"<b>Title :</b> <code>{anime['title_english']}</code>\n\n"
+        msg += f"<b>Known as :</b> <code>{anime['title']}</code>\n\n"
+        msg += f"<b>Type :</b> <code>{anime['type']}</code>\n\n"
+        msg += f"<b>Episodes :</b> <code>{anime['episodes']}</code>\n\n"
+        msg += f"<b>Status :</b> <code>{anime['status']}</code>\n\n"
+
+        return img_url, msg
+

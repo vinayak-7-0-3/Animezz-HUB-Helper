@@ -1,11 +1,11 @@
 # myanilist api
 from pyrogram import Client, filters
 from bot import BOT_USERNAME
-from bot.helpers.mal_api import get_anime_list
+from bot.helpers.mal_api import get_anime_list, get_anime_by_id
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 
 @Client.on_message(filters.command(["search_anime", f"search_anime@{BOT_USERNAME}"]))
-async def anime_mal(bot, update):
+async def search_anime_mal(bot, update):
     try:
         name = update.text.split(" ", maxsplit=1)[1]
         print(name)
@@ -24,3 +24,21 @@ async def anime_mal(bot, update):
                     text=msg,
                     reply_to_message_id=update.message_id
                 )
+
+@Client.on_message(filters.command(["get_anime", f"get_anime@{BOT_USERNAME}"]))
+async def get_anime_mal(bot, update):
+    try:
+        a_id = update.text.split(" ", maxsplit=1)[1]
+        print(id)
+    except:
+        a_id = None
+    if a_id:
+        photo, msg = get_anime_by_id(a_id)
+        if msg:
+            await bot.send_photo(
+                chat_id=update.chat.id,
+                photo=photo,
+                caption=msg,
+                reply_to_message_id=update.message_id
+            )
+            
