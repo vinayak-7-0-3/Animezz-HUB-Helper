@@ -33,13 +33,6 @@ def get_anime_by_id(id):
         msg += f"<b>Episodes :</b> <code>{anime['episodes']}</code>\n\n"
         msg += f"<b>Status :</b> <code>{anime['status']}</code>\n\n"
         try:
-            desc = anime["synopsis"]
-            if len(desc) > 750:
-                desc = desc[:750] + "..."
-            msg += f"<b>Description :</b>\n<code>{desc}</code>\n\n"
-        except:
-            pass
-        try:
             msg += f"<b>Score :</b> <code>{anime['score']}</code>\n\n"
         except:
             pass
@@ -49,6 +42,13 @@ def get_anime_by_id(id):
             pass
         try:
             msg += f"<b>Aired :</b> <code>{anime['aired']['string']}</code>\n\n"
+        except:
+            pass
+        try:
+            desc = anime["synopsis"]
+            if len(desc) > 750:
+                desc = desc[:750] + "..."
+            msg += f"<b>Description :</b>\n<code>{desc}</code>\n\n"
         except:
             pass
         return img_url, msg
