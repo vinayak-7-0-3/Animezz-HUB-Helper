@@ -1,14 +1,11 @@
 from jikanpy import Jikan, AioJikan
 
-animelist = Jikan()
 
-def get_anime_list(name):
+async def get_anime_list(name):
     titles = []
     id_list = []
-    try:
+    async with AioJikan() as animelist:
         anime = animelist.search("anime", name)
-    except:
-        return None
     if anime:
         results = anime["results"]
         if results:
@@ -20,10 +17,8 @@ def get_anime_list(name):
             return None, None
 
 async def get_anime_by_id(id, mode="msg"):
-    try:
+    async with AioJikan() as animelist:
         anime = animelist.anime(id)
-    except:
-        return None
     if anime:
         img_url = anime["image_url"]
 
