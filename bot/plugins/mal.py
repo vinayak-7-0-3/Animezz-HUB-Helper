@@ -1,4 +1,6 @@
 # myanilist api
+import asyncio
+from time import sleep
 from pyrogram import Client, filters
 from bot import BOT_USERNAME, INLINE_THUMB, LOGGER
 from pyrogram.errors import QueryIdInvalid
@@ -86,6 +88,7 @@ async def a_i_query(_, event: InlineQuery):
                     )
                 )
     try:
+        await asyncio.sleep(3)
         await event.answer(
             results=answers,
             cache_time=5
