@@ -17,6 +17,7 @@ async def get_anime_list(name):
             return None, None
 
 async def get_anime_by_id(id, mode="msg"):
+    anime = None
     async with AioJikan() as animelist:
         anime = animelist.anime(id)
     if anime:
