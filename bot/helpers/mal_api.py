@@ -1,6 +1,5 @@
 from jikanpy import Jikan, AioJikan
 
-
 async def get_anime_list(name):
     titles = []
     id_list = []
@@ -17,9 +16,8 @@ async def get_anime_list(name):
             return None, None
 
 async def get_anime_by_id(id, mode="msg"):
-    anime = None
-    async with AioJikan() as animelist:
-        anime = animelist.anime(id)
+    animelist = AioJikan()
+    anime = await animelist.anime(id)
     if anime:
         img_url = anime["image_url"]
 
@@ -50,6 +48,7 @@ async def get_anime_by_id(id, mode="msg"):
             msg += f"<b>Description :</b>\n<code>{desc}</code>\n\n"
         except:
             pass
+        await animelist.close()
         if mode == "msg":
             try:
                 trailer = anime["trailer_url"]
