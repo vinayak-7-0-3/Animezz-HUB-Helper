@@ -58,4 +58,18 @@ def get_anime_by_id(id):
         return img_url, msg, trailer
 
 async def get_all_details(name):
-    pass
+    titles = []
+    id_list = []
+    try:
+        anime = animelist.search("anime", name)
+    except:
+        anime = None
+    if anime:
+        results = anime["results"]
+        if results:
+            for result in results:
+                titles.append(result["title"])
+                id_list.append(result["mal_id"])
+            return titles, id_list
+        else:
+            return None, None, None

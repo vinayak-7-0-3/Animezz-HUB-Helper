@@ -36,7 +36,7 @@ async def get_anime_mal(bot, update):
         if msg:
             inline_keyboard = []
             if trailer:
-                inline_keyboard.append([InlineKeyboardButton(text="Trailer",callback_data=trailer)])
+                inline_keyboard.append([InlineKeyboardButton(text="Trailer", url=trailer)])
             inline_keyboard.append([InlineKeyboardButton(text="Close",callback_data="close")])
             await bot.send_photo(
                 chat_id=update.chat.id,
