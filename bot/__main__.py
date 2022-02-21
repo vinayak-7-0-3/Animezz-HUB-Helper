@@ -1,5 +1,5 @@
 from pyrogram import Client
-from bot import app, LOGGER, API_ID, API_HASH, BOT_TOKEN, STRING_SESSION
+from bot import LOGGER, API_ID, API_HASH, BOT_TOKEN, STRING_SESSION
 
 
 plugins = dict(
