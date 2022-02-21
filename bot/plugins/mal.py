@@ -72,6 +72,7 @@ async def a_i_query(_, event: InlineQuery):
         )
     else:
         img_list, msg_list, titles, desc_list = await get_all_details(event.query)
+        LOGGER.info(f"{img_list}\n{msg_list}\n{titles}\n{desc_list}")
         if msg_list:
             for title in titles:
                 answers.append(
