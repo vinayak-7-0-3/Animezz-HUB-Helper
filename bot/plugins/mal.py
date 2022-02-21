@@ -31,11 +31,21 @@ async def get_anime_mal(bot, update):
     except:
         a_id = None
     if a_id:
-        photo, msg = get_anime_by_id(a_id)
+        photo, msg, trailer = get_anime_by_id(a_id)
         if msg:
             await bot.send_photo(
                 chat_id=update.chat.id,
                 photo=photo,
                 caption=msg,
+                reply_markup=InlineKeyboardMarkup(
+                    [
+                        [
+                            InlineKeyboardButton(
+                                text="Watch trailer",
+                                url=trailer
+                            )
+                        ]
+                    ]
+                ),
                 reply_to_message_id=update.message_id
             )

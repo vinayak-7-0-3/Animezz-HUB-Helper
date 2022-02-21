@@ -1,5 +1,4 @@
 import logging
-import pyrogram
 from os import getenv
 
 logging.basicConfig(
@@ -14,6 +13,7 @@ logging.getLogger("urllib3").setLevel(logging.WARNING)
 API_ID = int(getenv("API_ID"))
 API_HASH = getenv("API_HASH")
 BOT_TOKEN = getenv("BOT_TOKEN")
+STRING_SESSION = getenv("STRING_SESSION")
 
 BOT_USERNAME = getenv("BOT_USERNAME")
 if BOT_USERNAME.startswith("@"):
@@ -27,20 +27,3 @@ ALLOW_BACKUP = bool(int(getenv("ALLOW_BACKUP", 0)))
 
 FOOTER = getenv("FOOTER")
 INLINE_THUMB = getenv("INLINE_THUMB", False)
-
-plugins = dict(
-    root="bot/plugins"
-)
-
-app = pyrogram.Client(
-    'Bott',
-    bot_token=BOT_TOKEN,
-    api_id=API_ID,
-    api_hash=API_HASH,
-    plugins=plugins ) 
-
-"""user = pyrogram.Client(
-    session_name=STRING_SESSION,
-    #bot_token=BOT_TOKEN,
-    api_id=API_ID,
-    api_hash=API_HASH)"""

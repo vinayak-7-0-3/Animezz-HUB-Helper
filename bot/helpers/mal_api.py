@@ -51,5 +51,7 @@ def get_anime_by_id(id):
             msg += f"<b>Description :</b>\n<code>{desc}</code>\n\n"
         except:
             pass
-        return img_url, msg
+        try:
+            trailer = anime["trailer_url"]
+        return img_url, msg, trailer
 
