@@ -1,5 +1,5 @@
 from pyrogram import Client, filters
-from bot import BOT_USERNAME, app
+from bot import BOT_USERNAME
 from bot.helpers.imdb_api import reqLinkID, get_info_from_id
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 
@@ -38,7 +38,7 @@ async def imdb(bot, update):
                 reply_to_message_id=update.message_id
             )
 
-@app.on_callback_query()
+@Client.on_callback_query()
 async def req_movie_cb(c: Client, cb: CallbackQuery):
     if cb.data == "close":
         await c.delete_messages(
