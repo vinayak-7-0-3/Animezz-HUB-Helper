@@ -72,6 +72,7 @@ async def get_all_details(name):
     desc_list = []
     async with AioJikan() as aio_mal:
         anime = await aio_mal.search("anime", name)
+        print(anime)
     if anime:
         results = anime["results"]
         if results:
