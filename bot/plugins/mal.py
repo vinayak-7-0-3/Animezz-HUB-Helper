@@ -1,8 +1,9 @@
 # myanilist api
 from pyrogram import Client, filters
-from bot import BOT_USERNAME
+from bot import BOT_USERNAME, INLINE_THUMB
 from bot.helpers.mal_api import get_anime_list, get_anime_by_id
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InlineQuery, \
+    InlineQueryResultArticle, InputTextMessageContent
 
 @Client.on_message(filters.command(["search_anime", f"search_anime@{BOT_USERNAME}"]))
 async def search_anime_mal(bot, update):
@@ -49,3 +50,29 @@ async def get_anime_mal(bot, update):
                 ),
                 reply_to_message_id=update.message_id
             )
+
+@Client.on_inline_query()
+async def a_i_query(_, event: InlineQuery):
+    answers = list()
+    if event.query == "":
+        answers.append(
+            InlineQueryResultArticle(
+                title="Search anime here",
+                input_message_content=InputTextMessageContent(
+                    message_text="Search any anime and get its info using our bot anywhere anytime."
+                ),
+                thumb_url=INLINE_THUMB,
+                reply_markup=InlineKeyboardMarkup(
+                    [
+                        [
+                            InlineKeyboardButton(
+                                text="Search again",
+                                switch_inline_query_current_chat=""
+                            )
+                        ]
+                    ]
+                )
+            )
+        )
+    else:
+        pass

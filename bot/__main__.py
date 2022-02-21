@@ -1,9 +1,8 @@
 from pyrogram import Client
 from bot import LOGGER, API_ID, API_HASH, BOT_TOKEN, STRING_SESSION
 
-
 plugins = dict(
-    root="bot/modules"
+    root="bot/plugins"
 )
 
 user = Client(
@@ -14,7 +13,7 @@ user = Client(
 class Bot(Client):
     def __init__(self):
         super().__init__(
-            "TidalDLBot",
+            "Bott",
             api_id=API_ID,
             api_hash=API_HASH,
             bot_token=BOT_TOKEN,
