@@ -1,7 +1,8 @@
 # myanilist api
 from pyrogram import Client, filters
-from bot import BOT_USERNAME, INLINE_THUMB
-from bot.helpers.mal_api import get_anime_list, get_anime_by_id
+from bot import BOT_USERNAME, INLINE_THUMB, LOGGER
+from pyrogram.errors import QueryIdInvalid
+from bot.helpers.mal_api import get_anime_list, get_anime_by_id, get_all_details
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InlineQuery, \
     InlineQueryResultArticle, InputTextMessageContent
 
@@ -70,4 +71,24 @@ async def a_i_query(_, event: InlineQuery):
             )
         )
     else:
-        pass
+        img_list, msg_list, titles, desc_list = await get_all_details(event.query)
+        if msg_list:
+            for title in titles:
+                answers.append(
+                    InlineQueryResultArticle(
+                        title=title,
+                        input_message_content=InputTextMessageContent(
+                            message_text=msg_list[titles.index(title)]
+                        ),
+                        thumb_url=img_list[titles.index(title)],
+                        description=desc_list[titles.index(title)]
+                    )
+                )
+    try:
+        await event.answer(
+            results=answers,
+            cache_time=0
+        )
+    except QueryIdInvalid:
+        LOGGER.info(f"QueryIdInvalid: {event.query}")
+
