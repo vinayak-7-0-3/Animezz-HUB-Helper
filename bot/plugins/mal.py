@@ -87,7 +87,7 @@ async def a_i_query(_, event: InlineQuery):
     try:
         await event.answer(
             results=answers,
-            cache_time=0
+            cache_time=5
         )
     except QueryIdInvalid:
         LOGGER.info(f"QueryIdInvalid: {event.query}")
