@@ -53,6 +53,8 @@ def get_anime_by_id(id):
             pass
         try:
             trailer = anime["trailer_url"]
+        except:
+            trailer = None
         return img_url, msg, trailer
 
 async def get_all_details(name):
