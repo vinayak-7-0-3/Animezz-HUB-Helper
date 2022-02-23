@@ -3,16 +3,18 @@ from jikanpy import Jikan, AioJikan
 async def get_anime_list(name):
     titles = []
     id_list = []
-    async with AioJikan() as animelist:
-        anime = animelist.search("anime", name)
+    animelist = AioJikan()
+    anime = animelist.search("anime", name)
     if anime:
         results = anime["results"]
         if results:
             for result in results:
                 titles.append(result["title"])
                 id_list.append(result["mal_id"])
+            await animelist.close()
             return titles, id_list
         else:
+            await animelist.close()
             return None, None
 
 async def get_anime_by_id(id, mode="msg"):
@@ -58,27 +60,6 @@ async def get_anime_by_id(id, mode="msg"):
         else:
             return img_url, msg, title, short_desc
 
-async def get_all_details(name):
-    anime = None
-    id_list = []
-    titles = []
-    img_list = []
-    msg_list = []
-    desc_list = []
-    async with AioJikan() as aio_mal:
-        anime = await aio_mal.search("anime", name)
-    if anime:
-        results = anime["results"]
-        if results:
-            for result in results:
-                id_list.append(result["mal_id"])
-        for a_id in id_list:
-            img, msg, title, short_desc = await get_anime_by_id(a_id, mode="aio")
-            img_list.append(img)
-            msg_list.append(msg)
-            titles.append(title)
-            desc_list.append(short_desc)
-        return img_list, msg_list, titles, desc_list
 
 
 

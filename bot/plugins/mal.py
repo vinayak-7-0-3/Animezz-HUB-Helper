@@ -15,7 +15,7 @@ async def search_anime_mal(bot, update):
     except:
         name = None
     if name:
-        titles, id_list = get_anime_list(name)
+        titles, id_list = await get_anime_list(name)
         if titles:
             msg = ""
             for id in id_list:
@@ -48,51 +48,4 @@ async def get_anime_mal(bot, update):
                 reply_markup=InlineKeyboardMarkup(inline_keyboard),
                 reply_to_message_id=update.message_id
             )
-
-@Client.on_inline_query()
-async def a_i_query(_, event: InlineQuery):
-    answers = list()
-    if event.query == "":
-        answers.append(
-            InlineQueryResultArticle(
-                title="Search anime here",
-                input_message_content=InputTextMessageContent(
-                    message_text="Search any anime and get its info using our bot anywhere anytime."
-                ),
-                thumb_url=INLINE_THUMB,
-                reply_markup=InlineKeyboardMarkup(
-                    [
-                        [
-                            InlineKeyboardButton(
-                                text="Search again",
-                                switch_inline_query_current_chat=""
-                            )
-                        ]
-                    ]
-                )
-            )
-        )
-    else:
-        img_list, msg_list, titles, desc_list = await get_all_details(event.query)
-        LOGGER.info(f"{img_list}\n{msg_list}\n{titles}\n{desc_list}")
-        if msg_list:
-            for title in titles:
-                answers.append(
-                    InlineQueryResultArticle(
-                        title=title,
-                        input_message_content=InputTextMessageContent(
-                            message_text=msg_list[titles.index(title)]
-                        ),
-                        thumb_url=img_list[titles.index(title)],
-                        description=desc_list[titles.index(title)]
-                    )
-                )
-    try:
-        await asyncio.sleep(3)
-        await event.answer(
-            results=answers,
-            cache_time=5
-        )
-    except QueryIdInvalid:
-        LOGGER.info(f"QueryIdInvalid: {event.query}")
 
