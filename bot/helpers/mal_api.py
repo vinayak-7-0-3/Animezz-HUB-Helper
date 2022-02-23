@@ -24,8 +24,11 @@ async def get_anime_by_id(id, mode="msg"):
         img_url = anime["image_url"]
 
         title = anime["title"]
+        eng_title = anime["title_english"]
+
         msg = f"<b>Title :</b> <code>{title}</code>\n\n"
-        msg += f"<b>Known as :</b> <code>{anime['title']}</code>\n\n"
+        if eng_title and eng_title != title:
+            msg += f"<b>Known as :</b> <code>{anime['title_english']}</code>\n\n"
         msg += f"<b>Type :</b> <code>{anime['type']}</code>\n\n"
         msg += f"<b>Episodes :</b> <code>{anime['episodes']}</code>\n\n"
         msg += f"<b>Status :</b> <code>{anime['status']}</code>\n\n"
