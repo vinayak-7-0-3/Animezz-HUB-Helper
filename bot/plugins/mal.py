@@ -1,12 +1,8 @@
 # myanilist api
-import asyncio
-from time import sleep
 from pyrogram import Client, filters
-from bot import BOT_USERNAME, INLINE_THUMB, LOGGER
-from pyrogram.errors import QueryIdInvalid
-from bot.helpers.mal_api import get_anime_list, get_anime_by_id, get_all_details
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InlineQuery, \
-    InlineQueryResultArticle, InputTextMessageContent
+from bot import BOT_USERNAME
+from bot.helpers.mal_api import get_anime_list, get_anime_by_id
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 @Client.on_message(filters.command(["search_anime", f"search_anime@{BOT_USERNAME}"]))
 async def search_anime_mal(bot, update):

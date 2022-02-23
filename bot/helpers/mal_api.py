@@ -1,4 +1,4 @@
-from jikanpy import Jikan, AioJikan
+from jikanpy import AioJikan
 
 async def get_anime_list(name):
     titles = []
