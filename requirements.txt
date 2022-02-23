@@ -3,3 +3,4 @@ TgCrypto
 requests
 urllib3
 jikanpy
+ffmpeg-python

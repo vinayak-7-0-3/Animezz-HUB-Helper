@@ -27,3 +27,5 @@ ALLOW_BACKUP = bool(int(getenv("ALLOW_BACKUP", 0)))
 
 FOOTER = getenv("FOOTER")
 INLINE_THUMB = getenv("INLINE_THUMB", False)
+
+DOWNLOAD_DIR = getenv("DOWNLOAD_DIR", "./downloads")
