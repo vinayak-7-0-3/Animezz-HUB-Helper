@@ -31,7 +31,7 @@ async def get_anime_mal(bot, update):
     except:
         a_id = None
     if a_id:
-        photo, msg, trailer = get_anime_by_id(a_id)
+        photo, msg, trailer = await get_anime_by_id(a_id)
         if msg:
             inline_keyboard = []
             if trailer:
