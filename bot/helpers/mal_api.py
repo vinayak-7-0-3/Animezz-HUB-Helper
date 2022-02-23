@@ -45,8 +45,8 @@ async def get_anime_by_id(id, mode="msg"):
             pass
         try:
             desc = anime["synopsis"]
-            if len(desc) > 750:
-                desc = desc[:750] + "..."
+            if len(desc) > 700:
+                desc = desc[:700] + "..."
             msg += f"<b>Description :</b>\n<code>{desc}</code>\n\n"
         except:
             pass
