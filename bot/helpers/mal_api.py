@@ -4,7 +4,7 @@ async def get_anime_list(name):
     titles = []
     id_list = []
     animelist = AioJikan()
-    anime = animelist.search("anime", name)
+    anime = await animelist.search("anime", name)
     if anime:
         results = anime["results"]
         if results:
