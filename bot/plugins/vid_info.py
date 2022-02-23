@@ -4,7 +4,7 @@ from bot import BOT_USERNAME, DOWNLOAD_DIR
 
 
 @Client.on_message(filters.command(["vid_info", f"vid_info@{BOT_USERNAME}"]))
-async def vid_info(bot, update):
+async def fetch_vid_info(bot, update):
     try:
         vid_file = update.reply_to_message
     except:
