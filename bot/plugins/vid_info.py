@@ -5,8 +5,11 @@ from bot import BOT_USERNAME, DOWNLOAD_DIR
 
 @Client.on_message(filters.command(["vid_info", f"vid_info@{BOT_USERNAME}"]))
 async def vid_info(bot, update):
-    if update.reply_to_message:
+    try:
         vid_file = update.reply_to_message
+    except:
+        vid_file = None
+    if vid_file:
         file_path = f"{DOWNLOAD_DIR}/{update.reply_to_message.message_id}/"
         init_msg = await bot.send_message(
             chat_id=update.chat.id,
@@ -25,3 +28,9 @@ async def vid_info(bot, update):
             )
             vid_info = await ffmpeg.probe(dl_path)["streams"]
             print(vid_info)
+    else:
+        await bot.send_message(
+            chat_id=update.chat.id,
+            text="Reply to a video to get info about it",
+            reply_to_message_id=update.message_id
+        )
