@@ -20,11 +20,6 @@ async def fetch_tg_vid_info(bot, update):
             file_name=file_path
         )
         if dl_path:
-            await bot.edit_message_text(
-                chat_id=update.chat.id,
-                message_id=init_msg.message_id,
-                text="Processing..........."
-            )
             vid_info = ffmpeg.probe(dl_path)["streams"]
             msg = f"Codec: {vid_info[0]['codec_long_name']}\n"
             msg += f"Resolution: {vid_info[0]['width']}x{vid_info[0]['height']}\n"
