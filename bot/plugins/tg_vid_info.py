@@ -1,4 +1,4 @@
-import ffmpeg
+#import ffmpeg
 from pyrogram import Client, filters
 from bot import BOT_USERNAME, DOWNLOAD_DIR
 
@@ -26,8 +26,8 @@ async def fetch_tg_vid_info(bot, update):
                 message_id=init_msg.message_id,
                 text="Processing..."
             )
-            vid_info = await ffmpeg.probe(dl_path)["streams"]
-            print(vid_info)
+            #vid_info = await ffmpeg.probe(dl_path)["streams"]
+            #print(vid_info)
     else:
         await bot.send_message(
             chat_id=update.chat.id,
