@@ -30,10 +30,14 @@ async def fetch_tg_vid_info(bot, update):
             msg += f"Resolution: {vid_info[0]['width']}x{vid_info[0]['height']}\n"
             msg += f"Bitrate: {vid_info[0]['bit_rate']}\n"
             msg += f"Audio: {vid_info[1]['codec_long_name']}\n"
-            await bot.edit_message_text(
+            await bot.delete_messages(
                 chat_id=update.chat.id,
-                message_id=init_msg.message_id,
-                text=msg
+                message_ids=[init_msg.message_id]
+            )
+            await bot.send_message(
+                chat_id=update.chat.id,
+                text=msg,
+                reply_to_message_id=update.message_id
             )
     else:
         await bot.send_message(
