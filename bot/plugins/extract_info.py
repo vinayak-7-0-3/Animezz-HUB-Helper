@@ -25,7 +25,7 @@ async def fetch_tg_vid_info(bot, update):
                 message_id=init_msg.message_id,
                 text="Processing..."
             )
-            vid_info = await ffmpeg.probe(dl_path)["streams"]
+            vid_info = ffmpeg.probe(dl_path)["streams"]
             print(vid_info)
     else:
         await bot.send_message(
