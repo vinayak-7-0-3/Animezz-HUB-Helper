@@ -22,6 +22,7 @@ async def fetch_tg_vid_info(bot, update):
         )
         if dl_path:
             vid_info = ffmpeg.probe(dl_path)["streams"]
+            print(vid_info)
             await asyncio.sleep(3)
             msg = f"Codec: {vid_info[0]['codec_long_name']}\n"
             msg += f"Resolution: {vid_info[0]['width']}x{vid_info[0]['height']}\n"
