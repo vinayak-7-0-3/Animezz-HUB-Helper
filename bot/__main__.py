@@ -23,7 +23,15 @@ class Bot(Client):
     async def start(self):
         await super().start()
         await user.start()
-        LOGGER.info("Bot Started...... Now Enjoy")
+        LOGGER.info(
+            """
+|====================================================|
+|                                                    |
+|               Bot Started Successfully             |
+|                    AnimezzHUB Bot                  |
+|                                                    |
+|====================================================|
+""")
 
     async def stop(self, *args):
         await super().stop()
