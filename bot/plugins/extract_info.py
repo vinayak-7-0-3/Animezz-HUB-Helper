@@ -1,9 +1,9 @@
+import time
 import asyncio
 import ffmpeg
-import time
 from pyrogram import Client, filters
 from bot import BOT_USERNAME, DOWNLOAD_DIR
-from helpers.display_prog import progress_for_pyrogram
+from bot.helpers.display_prog import progress_for_pyrogram
 
 
 @Client.on_message(filters.command(["getvidinfo", f"getvidinfo@{BOT_USERNAME}"]))
