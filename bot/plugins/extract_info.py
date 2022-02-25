@@ -1,5 +1,6 @@
 import asyncio
 import ffmpeg
+import time
 from pyrogram import Client, filters
 from bot import BOT_USERNAME, DOWNLOAD_DIR
 from helpers.display_prog import progress_for_pyrogram
@@ -26,7 +27,7 @@ async def fetch_tg_vid_info(bot, update):
                     "....Downloading.....\n",
                     init_msg,
                     c_time
-                )
+                ),
             file_name=file_path
         )
         if dl_path:
