@@ -25,8 +25,14 @@ async def fetch_tg_vid_info(bot, update):
             await asyncio.sleep(3)
             msg = f"Codec: {vid_info[0]['codec_long_name']}\n"
             msg += f"Resolution: {vid_info[0]['width']}x{vid_info[0]['height']}\n"
-            msg += f"Bitrate: {vid_info[0]['bit_rate']}\n"
-            msg += f"Audio: {vid_info[1]['codec_long_name']}\n"
+            try:
+                msg += f"Bitrate: {vid_info[0]['bit_rate']}\n"
+            except:
+                pass
+            try:
+                msg += f"Audio: {vid_info[1]['codec_long_name']}\n"
+            except:
+                pass
             await bot.delete_messages(
                 chat_id=update.chat.id,
                 message_ids=[init_msg.message_id]
