@@ -1,3 +1,4 @@
+import asyncio
 import ffmpeg
 from pyrogram import Client, filters
 from bot import BOT_USERNAME, DOWNLOAD_DIR
@@ -21,6 +22,7 @@ async def fetch_tg_vid_info(bot, update):
         )
         if dl_path:
             vid_info = ffmpeg.probe(dl_path)["streams"]
+            await asyncio.sleep(3)
             msg = f"Codec: {vid_info[0]['codec_long_name']}\n"
             msg += f"Resolution: {vid_info[0]['width']}x{vid_info[0]['height']}\n"
             msg += f"Bitrate: {vid_info[0]['bit_rate']}\n"
@@ -29,6 +31,7 @@ async def fetch_tg_vid_info(bot, update):
                 chat_id=update.chat.id,
                 message_ids=[init_msg.message_id]
             )
+            await asyncio.sleep(1)
             await bot.send_message(
                 chat_id=update.chat.id,
                 text=msg,
