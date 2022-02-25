@@ -2,6 +2,8 @@ import asyncio
 import ffmpeg
 from pyrogram import Client, filters
 from bot import BOT_USERNAME, DOWNLOAD_DIR
+from helpers.display_prog import progress_for_pyrogram
+
 
 @Client.on_message(filters.command(["getvidinfo", f"getvidinfo@{BOT_USERNAME}"]))
 async def fetch_tg_vid_info(bot, update):
@@ -16,8 +18,15 @@ async def fetch_tg_vid_info(bot, update):
             text="Downloading Video...",
             reply_to_message_id=update.message_id
         )
+        c_time = time.time()
         dl_path = await bot.download_media(
             message=update.reply_to_message,
+            progress=progress_for_pyrogram,
+            progress_args=(
+                    "....Downloading.....\n",
+                    init_msg,
+                    c_time
+                )
             file_name=file_path
         )
         if dl_path:
