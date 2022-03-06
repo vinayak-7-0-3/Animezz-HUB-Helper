@@ -1,6 +1,6 @@
 from bot import BOT_USERNAME, DOWNLOAD_DIR
 from pyrogram import Client, filters
-from bot.helpers.tracemoe_api import tracemoe_trace
+#from bot.helpers.tracemoe_api import tracemoe_trace
 
 
 @Client.on_message(filters.command(["check_anime", f"trace@{BOT_USERNAME}"]))
