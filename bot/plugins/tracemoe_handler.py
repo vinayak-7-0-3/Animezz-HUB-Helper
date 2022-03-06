@@ -1,10 +1,9 @@
-from bot import BOT_USERNAME, DOWNLOAD_DIR, Bot
+from bot import BOT_USERNAME, DOWNLOAD_DIR
 from pyrogram import Client, filters
 from bot.helpers.tracemoe_api import tracemoe_trace
 
-app = Bot()
 
-@app.on_message(filters.command(["trace", f"trace@{BOT_USERNAME}"]))
+@Client.on_message(filters.command(["check_anime", f"trace@{BOT_USERNAME}"]))
 async def trace_anime_moe(bot, update):
     if update.reply_to_message:
         init_msg = await bot.send_message(
