@@ -17,7 +17,7 @@ async def imdb(bot, update):
             inline_keyboard = []
             for id in id_list:
                 name = titles[id_list.index(id)]
-                inline_keyboard.append([InlineKeyboardButton(text=name,callback_data=id)])
+                inline_keyboard.append([InlineKeyboardButton(text=name,callback_data=f"i_{id}")])
             inline_keyboard.append([InlineKeyboardButton(text="Close",callback_data="close")])
             await bot.send_message(
                     chat_id=update.chat.id,
@@ -38,37 +38,24 @@ async def imdb(bot, update):
                 reply_to_message_id=update.message_id
             )
 
-@Client.on_callback_query()
+@Client.on_callback_query(filters.regex("i_"))
 async def req_movie_cb(c: Client, cb: CallbackQuery):
-    if cb.data == "close":
+    link = imdb_link_prefix + str(cb.data)
+    msg, photo = await get_info_from_id(link)
+    if msg:
         await c.delete_messages(
             chat_id=cb.message.chat.id,
             message_ids=cb.message.message_id
         )
-        try:
-            await c.delete_messages(
-                chat_id=cb.message.chat.id,
-                message_ids=cb.message.reply_to_message.message_id
-            )
-        except:
-            pass
+        await c.send_photo(
+            chat_id=cb.message.chat.id,
+            photo=photo,
+            caption=msg,
+            reply_to_message_id=cb.message.reply_to_message.message_id
+        )
     else:
-        link = imdb_link_prefix + str(cb.data)
-        msg, photo = await get_info_from_id(link)
-        if msg:
-            await c.delete_messages(
-                chat_id=cb.message.chat.id,
-                message_ids=cb.message.message_id
-            )
-            await c.send_photo(
-                chat_id=cb.message.chat.id,
-                photo=photo,
-                caption=msg,
-                reply_to_message_id=cb.message.reply_to_message.message_id
-            )
-        else:
-            await c.edit_message_text(
-                chat_id=cb.message.chat.id,
-                message_id=cb.message.message_id,
-                text="Sorry, Couldnt Find A Proper Source For This Movie 😥"
-            )
+        await c.edit_message_text(
+            chat_id=cb.message.chat.id,
+            message_id=cb.message.message_id,
+            text="Sorry, Couldnt Find A Proper Source For This Movie 😥"
+        )

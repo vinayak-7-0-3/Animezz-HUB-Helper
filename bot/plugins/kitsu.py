@@ -22,7 +22,7 @@ async def search_anime_kitsu(bot, update):
         if titles:
             inline_keyboard = []
             for aid in aids:
-                inline_keyboard.append([InlineKeyboardButton(text=titles[aids.index(aid)], callback_data=f"kitsuanime_{aid}")])
+                inline_keyboard.append([InlineKeyboardButton(text=titles[aids.index(aid)], callback_data=f"k_{aid}")])
             inline_keyboard.append([InlineKeyboardButton(text="Close",callback_data="close")])
             await bot.send_message(
                 chat_id=update.chat.id,
@@ -31,7 +31,7 @@ async def search_anime_kitsu(bot, update):
                 reply_to_message_id=update.message_id
             )
 
-@Client.on_callback_query(filters.regex("kitsuanime_"))
+@Client.on_callback_query(filters.regex("k_"))
 async def get_anime_kitsu_cb(c: Client, cb: CallbackQuery):
     a_id = cb.data.split("_")[1]
     photo, msg = await kitsu_get_anime(a_id)

@@ -22,7 +22,7 @@ async def kitsu_get_anime(a_id):
     if r.status_code == 200:
         data = r.json()
         for i in data["data"]:
-            photo = i["attributes"]["posterImage"]["large"]
+            photo = i["attributes"]["posterImage"]["original"]
             print(photo)
             try:
                 msg += f"<b>Title :</b> {i['attributes']['titles']['en']}\n\n"
