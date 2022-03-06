@@ -19,9 +19,12 @@ async def kitsu_get_anime(a_id):
     if r.status_code == 200:
         data = r.json()
         for i in data["data"]:
-            msg += f"<b>Title :</b> {i['attributes']['titles']['en']}\n\n"
+            photo = i["attributes"]["posterImage"]["original"]
+            try:
+                msg += f"<b>Title :</b> {i['attributes']['titles']['en']}\n\n"
+            except:
+                msg += f"<b>Title :</b> {i['attributes']['canonicalTitle']}\n\n"
             msg += f"<b>Rating :</b> {i['attributes']['ratingRank']}\n\n"
             msg += f"<b>Description :</b> {i['attributes']['synopsis']}\n\n"
             msg += f"<b>Status :</b> {i['attributes']['status']}"
-    return msg
-    
+    return photo, msg

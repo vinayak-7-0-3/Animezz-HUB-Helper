@@ -1,7 +1,7 @@
 from bot import BOT_USERNAME
 from pyrogram import Client, filters
 from bot.helpers.kitsu_api import kitsu_get_title, kitsu_get_anime
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 
 @Client.on_message(filters.command(["kitsu", f"kitsu@{BOT_USERNAME}"]))
 async def search_anime_kitsu(bot, update):
@@ -30,6 +30,19 @@ async def search_anime_kitsu(bot, update):
                 reply_markup=InlineKeyboardMarkup(inline_keyboard),
                 reply_to_message_id=update.message_id
             )
+
+@Client.on_callback_query(filters.regex("kitsuanime_"))
+async def get_anime_kitsu_cb(c: Client, cb: CallbackQuery):
+    a_id = cb.data.split("_")[1]
+    photo, msg= await kitsu_get_anime(a_id)
+    if msg:
+        await c.delete_messages(chat_id=cb.message.chat.id, message_ids=[cb.message.message_id])
+        await c.send_photo(
+            chat_id=cb.message.chat.id,
+            photo=photo,
+            caption=msg,
+            reply_to_message_id=cb.message.reply_to_message.message_id
+        )
 
 
 
