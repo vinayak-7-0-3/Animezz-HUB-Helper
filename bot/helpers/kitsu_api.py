@@ -8,7 +8,10 @@ async def kitsu_get_title(name):
     if r.status_code == 200:
         data = r.json()
         for i in data["data"]:
-            titles.append(i["attributes"]["titles"]["en"])
+            try:
+                titles.append(i["attributes"]["titles"]["en"])
+            except:
+                titles.append(i["attributes"]["canonicalTitle"])
             a_id.append(i["id"])
     return titles, a_id
 
