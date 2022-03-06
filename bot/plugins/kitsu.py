@@ -34,7 +34,7 @@ async def search_anime_kitsu(bot, update):
 @Client.on_callback_query(filters.regex("kitsuanime_"))
 async def get_anime_kitsu_cb(c: Client, cb: CallbackQuery):
     a_id = cb.data.split("_")[1]
-    photo, msg= await kitsu_get_anime(a_id)
+    photo, msg = await kitsu_get_anime(a_id)
     if msg:
         await c.delete_messages(chat_id=cb.message.chat.id, message_ids=[cb.message.message_id])
         await c.send_photo(
