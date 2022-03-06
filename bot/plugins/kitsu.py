@@ -1,6 +1,6 @@
 from bot import BOT_USERNAME
 from pyrogram import Client, filters
-from helpers.kitsu_api import kitsu_get_title, kitsu_get_anime
+from bot.helpers.kitsu_api import kitsu_get_title, kitsu_get_anime
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 @Client.on_message(filters.command(["kitsu", f"kitsu@{BOT_USERNAME}"]))
