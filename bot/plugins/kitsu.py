@@ -15,7 +15,7 @@ async def search_anime_kitsu(bot, update):
     if name:
         await bot.send_message(
                 chat_id=update.chat.id,
-                text=f"<b>Searching for:</b> {name}",
+                text=f"Searching for: <code>{name}</code>",
                 reply_to_message_id=update.message_id
             )
         titles, aids = await kitsu_get_title(name)
@@ -26,7 +26,7 @@ async def search_anime_kitsu(bot, update):
             inline_keyboard.append([InlineKeyboardButton(text="Close",callback_data="close")])
             await bot.send_message(
                 chat_id=update.chat.id,
-                text="<b>Search Results:</b>",
+                text="<b>Select Anime to fetch details</b>",
                 reply_markup=InlineKeyboardMarkup(inline_keyboard),
                 reply_to_message_id=update.message_id
             )
