@@ -31,6 +31,12 @@ async def tracemoe_vid(bot, update):
                 video=video_link,
                 reply_to_message_id=update.message_id
             )
+    else:
+        await bot.send_message(
+            chat_id=update.chat.id,
+            text="Reply to trace",
+            reply_to_message_id=update.message_id
+        ) 
 
 
 
