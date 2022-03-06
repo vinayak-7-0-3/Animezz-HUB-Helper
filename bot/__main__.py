@@ -29,6 +29,7 @@ class Bot(Client):
 |                                                    |
 |               Bot Started Successfully             |
 |                    AnimezzHUB Bot                  |
+|                        v1.0.0                      |
 |                                                    |
 |====================================================|
 """)
