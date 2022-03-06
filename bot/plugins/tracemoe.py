@@ -4,7 +4,7 @@ from pyrogram import Client, filters
 from bot.helpers.tracemoe_api import tracemoe_trace
 
 @Client.on_message(filters.command(["trace", f"trace@{BOT_USERNAME}"]))
-async def trace(bot, update):
+async def tracemoe_vid(bot, update):
     if update.reply_to_message:
         init_msg = await bot.send_message(
             chat_id=update.chat.id,
