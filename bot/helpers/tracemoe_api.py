@@ -1,6 +1,7 @@
 import asyncio
 import tracemoepy
 import mimetypes
+import requests
 
 async def tracemoe_trace(file_path):
     """async with tracemoepy.AsyncTrace() as tracemoe:
