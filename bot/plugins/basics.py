@@ -11,7 +11,7 @@ async def start(bot, update):
     )
 
 @Client.on_callback_query(filters.regex("close"))
-async def close_menu(bot, cb: CallbackQuery):
+async def close_menu(c: Client, cb: CallbackQuery):
     await c.delete_messages(
         chat_id=cb.message.chat.id,
         message_ids=cb.message.message_id
@@ -23,3 +23,11 @@ async def close_menu(bot, cb: CallbackQuery):
         )
     except:
         pass
+
+@Client.on_message(filters.command(["check_anime", f"check_anime@{BOT_USERNAME}"]))
+async def check_anime(bot, update):
+    init_msg = await bot.send_message(
+        chat_id=update.chat.id,
+        text="Downloading .......",
+        reply_to_message_id=update.message_id
+    )
