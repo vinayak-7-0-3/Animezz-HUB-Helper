@@ -39,3 +39,37 @@ async def backup_file(bot, update):
             from_chat_id=update.chat.id,
             message_id=update.message_id
         )
+
+
+@Client.on_message(filters.command(["p2c", f"p2c@{BOT_USERNAME}"]))
+async def post_to_channel(bot, update):
+    if update.from_user.id in ADMINS:
+        if update.reply_to_message:
+            try:
+                c_id = update.text.split(" ")[1]
+                try:
+                    buttons = update.text.split("\n")
+                    buttons.pop(0)
+                    if buttons:
+                        inline_keyboard = []
+                        for button in buttons:
+                            name = button.split(" | ")[0]
+                            url = button.split(" | ")[1]
+                            inline_keyboard.append([InlineKeyboardButton(name, url=url)])
+                except:
+                    inline_keyboard = None
+            except:
+                c_id = None
+            if c_id and buttons:    
+                await bot.copy_message(
+                    chat_id=c_id,
+                    from_chat_id=update.chat.id,
+                    message_id=update.reply_to_message.message_id,
+                    reply_markup=InlineKeyboardMarkup(inline_keyboard)
+                )
+            else:
+                await bot.copy_message(
+                    chat_id=c_id,
+                    from_chat_id=update.chat.id,
+                    message_id=update.reply_to_message.message_id
+                )
