@@ -54,7 +54,7 @@ async def post_to_channel(bot, update):
                 c_id = None
             if c_id and buttons:    
                 await bot.copy_message(
-                    chat_id=c_id,
+                    chat_id=int(c_id),
                     from_chat_id=update.chat.id,
                     message_id=update.reply_to_message.message_id,
                     reply_markup=InlineKeyboardMarkup(inline_keyboard)
