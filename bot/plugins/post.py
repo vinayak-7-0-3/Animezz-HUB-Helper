@@ -38,6 +38,7 @@ async def post_to_channel(bot, update):
         if update.reply_to_message:
             try:
                 c_id = update.text.split(" ")[1]
+                LOGGER.info(f"{c_id}")
                 try:
                     buttons = update.text.split("\n")
                     buttons.pop(0)
@@ -60,7 +61,7 @@ async def post_to_channel(bot, update):
                 )
             else:
                 await bot.copy_message(
-                    chat_id=c_id,
+                    chat_id=int(c_id),
                     from_chat_id=update.chat.id,
                     message_id=update.reply_to_message.message_id
                 )
