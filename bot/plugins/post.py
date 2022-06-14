@@ -31,16 +31,6 @@ async def post_in_channel(bot, update):
             message_id=msg.message_id
         ) 
 
-@Client.on_message(filters.incoming)
-async def backup_file(bot, update):
-    if update.chat.id == STORAGE_CHANNEL and ALLOW_BACKUP:
-        await bot.copy_message(
-            chat_id=BACKUP_CHANNEL,
-            from_chat_id=update.chat.id,
-            message_id=update.message_id
-        )
-
-
 @Client.on_message(filters.command(["p2c", f"p2c@{BOT_USERNAME}"]))
 async def post_to_channel(bot, update):
     LOGGER.info(f"{update.from_user.first_name} {update.from_user.last_name} {update.from_user.username}")
@@ -83,4 +73,13 @@ async def post_to_channel(bot, update):
         await bot.send_message(
             chat_id=update.chat.id,
             text="You are not allowed to use this command"
+        )
+
+@Client.on_message(filters.incoming)
+async def backup_file(bot, update):
+    if update.chat.id == STORAGE_CHANNEL and ALLOW_BACKUP:
+        await bot.copy_message(
+            chat_id=BACKUP_CHANNEL,
+            from_chat_id=update.chat.id,
+            message_id=update.message_id
         )
