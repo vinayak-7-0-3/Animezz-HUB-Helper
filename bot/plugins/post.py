@@ -1,5 +1,5 @@
 from bot import BOT_USERNAME, ADMINS, CHANNEL_ID, \
-    ALLOW_BACKUP, BACKUP_CHANNEL, STORAGE_CHANNEL
+    ALLOW_BACKUP, BACKUP_CHANNEL, LOGGER, STORAGE_CHANNEL
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
@@ -43,6 +43,7 @@ async def backup_file(bot, update):
 
 @Client.on_message(filters.command(["p2c", f"p2c@{BOT_USERNAME}"]))
 async def post_to_channel(bot, update):
+    LOGGER.info(f"{update.from_user.first_name} {update.from_user.last_name} {update.from_user.username}")
     if update.from_user.id in ADMINS:
         if update.reply_to_message:
             try:
@@ -73,3 +74,13 @@ async def post_to_channel(bot, update):
                     from_chat_id=update.chat.id,
                     message_id=update.reply_to_message.message_id
                 )
+        else:
+            await bot.send_message(
+                chat_id=update.chat.id,
+                text="Please reply to a message to copy it to a channel"
+            )
+    else:
+        await bot.send_message(
+            chat_id=update.chat.id,
+            text="You are not allowed to use this command"
+        )
