@@ -6,10 +6,10 @@ plugins = dict(
     root="bot/plugins"
 )
 
-user = Client(
+"""user = Client(
     session_name=STRING_SESSION,
     api_id=API_ID,
-    api_hash=API_HASH)
+    api_hash=API_HASH)"""
 
 class Bot(Client):
     def __init__(self):
@@ -23,7 +23,7 @@ class Bot(Client):
 
     async def start(self):
         await super().start()
-        await user.start()
+        #await user.start()
         LOGGER.info(
             """
 |====================================================|
@@ -38,7 +38,7 @@ class Bot(Client):
     async def stop(self, *args):
         await super().stop()
         LOGGER.info('Exiting User........')
-        await user.stop()
+        #await user.stop()
         LOGGER.info('Bot Stopped ! Bye..........')
 
 if __name__ == "__main__":
