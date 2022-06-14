@@ -40,6 +40,7 @@ async def post_to_channel(bot, update):
                 c_id = update.text.split(" ")[1]
                 LOGGER.info(f"{c_id}")
                 try:
+                    c_id = c_id.split("\n")[0]
                     buttons = update.text.split("\n")
                     buttons.pop(0)
                     if buttons:
